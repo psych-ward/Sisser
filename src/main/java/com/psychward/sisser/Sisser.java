@@ -2,6 +2,7 @@ package com.psychward.sisser;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.EntityType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityMobGriefingEvent;
@@ -86,6 +87,8 @@ public class Sisser
 
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public void EntityMobGriefEvent(EntityMobGriefingEvent e) {
-        e.setCanceled(true);
+        if(e.getEntity().getType() == EntityType.CREEPER){
+            e.setCanceled(true);
+        }
     }
 }
