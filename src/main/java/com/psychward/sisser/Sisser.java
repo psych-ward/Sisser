@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.EntityMobGriefingEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -80,5 +82,10 @@ public class Sisser
             // register a new block here
             LOGGER.info("HELLO from Register Block");
         }
+    }
+
+    @SubscribeEvent(priority = EventPriority.NORMAL)
+    public void EntityMobGriefEvent(EntityMobGriefingEvent e) {
+        e.setCanceled(true);
     }
 }
