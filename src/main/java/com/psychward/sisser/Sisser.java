@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityMobGriefingEvent;
+import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -88,7 +89,17 @@ public class Sisser
     @SubscribeEvent(priority = EventPriority.NORMAL)
     public void EntityMobGriefEvent(EntityMobGriefingEvent e) {
         if(e.getEntity().getType() == EntityType.CREEPER){
-            e.setCanceled(true);
+            //TODO: creeper only
+
         }
+    }
+
+    @SubscribeEvent
+    public void onDetonate(ExplosionEvent.Detonate event) {
+        if (event.isCanceled()){
+            return;
+        }
+        //This crashes server :P
+        //event.setCanceled(true);
     }
 }
