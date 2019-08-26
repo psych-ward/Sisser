@@ -3,6 +3,9 @@ package com.psychward.sisser;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.monster.CreeperEntity;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityMobGriefingEvent;
@@ -20,6 +23,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -86,20 +91,16 @@ public class Sisser
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.NORMAL)
-    public void EntityMobGriefEvent(EntityMobGriefingEvent e) {
-        if(e.getEntity().getType() == EntityType.CREEPER){
-            //TODO: creeper only
-
-        }
-    }
-
     @SubscribeEvent
     public void onDetonate(ExplosionEvent.Detonate event) {
-        if (event.isCanceled()){
+        World world = event.getWorld();
+        if (world.isRemote) {
             return;
         }
-        //This crashes server :P
-        //event.setCanceled(true);
+        Explosion explosion = event.getExplosion();
+        if(explosion.getExplosivePlacedBy() instanceof CreeperEntity) {
+            List blocks = event.getAffectedBlocks();
+            blocks.clear();
+        }
     }
 }
