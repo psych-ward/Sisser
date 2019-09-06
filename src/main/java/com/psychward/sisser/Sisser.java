@@ -14,8 +14,6 @@ import java.util.List;
 
 @Mod("sisser")
 public class Sisser {
-    // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
 
     public Sisser() {
         // Register ourselves for server and other game events we are interested in
