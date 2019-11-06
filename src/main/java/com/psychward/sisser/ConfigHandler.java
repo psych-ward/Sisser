@@ -14,7 +14,7 @@ class ConfigHandler {
         General(ForgeConfigSpec.Builder builder) {
             builder.push("General");
             DamagePlayers = builder
-                    .comment("Creeper Explosions Damage Players [false/true|default:false]")
+                    .comment("Creeper Explosions Damage Players [false/true|default:true]")
                     .translation("damageplayers.sisser.config")
                     .define("damagePlayers", true);
             DamageBlocks = builder
