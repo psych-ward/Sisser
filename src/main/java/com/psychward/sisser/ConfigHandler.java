@@ -16,11 +16,11 @@ class ConfigHandler {
             DamagePlayers = builder
                     .comment("Creeper Explosions Damage Players [false/true|default:false]")
                     .translation("damageplayers.sisser.config")
-                    .define("damagePlayers", false);
+                    .define("damagePlayers", true);
             DamageBlocks = builder
                     .comment("Creeper Explosions Damage Blocks [false/true|default:false]")
                     .translation("damageblocks.sisser.config")
-                    .define("damageBlocks", true);
+                    .define("damageBlocks", false);
             builder.pop();
         }
     }
